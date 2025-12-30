@@ -97,15 +97,13 @@ color: #4caf50;
 ul li span {
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 8px;
     width: 30px;
     height: 30px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-ul li span:hover {
-    background: #555;
-}
+
