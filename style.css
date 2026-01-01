@@ -66,6 +66,8 @@ ul li {
     user-select: none;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 ul li:hover {
@@ -102,8 +104,11 @@ ul li span {
     height: 30px;
     font-size: 1.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-
+#edit-btn {
+    
+    margin-right: 3.5rem;
+}
