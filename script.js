@@ -1,6 +1,25 @@
 const input = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
+
+// save tasks for localStorage
+function saveTasks() {
+let tasks = [];
+
+document.querySelectorAll("#list-container li").forEach(li => {
+    tasks.push({
+        text: li.firstChild.textContent,
+        completed: li.classList.contains("checked")
+    });
+});
+
+localStorage.setItem("tasks", JSON.stringify(tasks));
+
+}
+
+
+//FUNCTION TO ADD TASKS TO THE LIST
+
 function addTask(){
     if(input.value.trim() === '') {
         alert("Please enter a task");
@@ -17,7 +36,10 @@ function addTask(){
 
         li. addEventListener("click", () => {
     li.classList.toggle("checked");
+    saveTasks();
 })
+
+
 
     // edit the task when the edit button gets clicked
 
@@ -34,24 +56,106 @@ editSpan.addEventListener("click", (e) => {
 
     if (newText !== null && newText.trim() !== "") {
         li.firstChild.textContent = newText;
+        saveTasks();
     }
 })
 
-        //CREATE A DELETE ICON WHEN THE LI IS CREATED
+
+
+        //create a delete icon when the task is created
 
         let span = document.createElement("span");
         span.innerHTML = '<i class="fas fa-trash"></i>';
-        li.appendChild(span);    
-
-
-//delete the task when the button gets clicked
+        li.appendChild(span);   
+        
+        
+//delete the task when the delete icon gets clicked
 span.addEventListener("click", (e) => {
     li.remove();
+    saveTasks();
      e.stopPropagation();
 })
+
+    saveTasks();
 
     }
 
     input.value = '';
-   
 }
+
+
+
+//function to load the tasks when the pages load
+
+function loadTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (!savedTasks) return;
+
+    //load the tasks from the array
+
+    const tasks = JSON.parse(savedTasks);
+
+    //clear the ul to avoid duplications;
+    listContainer.innerHTML = "";
+
+    //rebuild the tasks list
+
+    tasks.forEach(task => {
+        let li = document.createElement("li");
+        li.textContent = task.text;
+
+        if (task.completed) {
+            li.classList.add("checked");
+
+        }
+
+       
+         //CREATE A DELETE ICON WHEN THE LI IS CREATED
+
+        let span = document.createElement("span");
+        span.innerHTML = '<i class="fas fa-trash"></i>';
+        li.appendChild(span);   
+        
+        
+//delete the task when the button gets clicked
+span.addEventListener("click", (e) => {
+    li.remove();
+    saveTasks();
+     e.stopPropagation();
+})
+
+        //rebuild the edit button
+
+        let editSpan = document.createElement("span");
+        editSpan.innerHTML = '<i class="fas fa-pen"></i>';
+        li.appendChild(editSpan);
+        editSpan.id = "edit-btn";
+
+        //listener for the edit button
+
+        editSpan.addEventListener("click", (e) => {
+        e.stopPropagation();
+        let currentText = li.firstChild.textContent;
+    let newText = prompt("Edit task:", currentText);
+
+    if (newText !== null && newText.trim() !== "") {
+        li.firstChild.textContent = newText;
+        saveTasks();
+    }
+    });
+
+    //listener for check as completed
+
+     li.addEventListener("click", () => {
+        li.classList.toggle("checked");
+        saveTasks();
+    });
+
+        listContainer.appendChild(li);
+    });
+
+
+}
+
+loadTasks();
