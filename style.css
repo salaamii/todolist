@@ -140,3 +140,15 @@ ul li span {
     justify-content: space-between;
     margin-bottom: 2.5rem;
 }
+
+@media (max-width: 500px ) {
+
+    html {
+        font-size: 62.5%;
+    }
+    .todo-filter-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
