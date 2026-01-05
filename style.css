@@ -112,3 +112,31 @@ ul li span {
     
     margin-right: 3.5rem;
 }
+
+#filters {
+    
+    display: flex;
+    gap: 0.5rem; 
+}
+
+#filters button {
+    padding: 0px 15px;
+    background: transparent;
+    border: 1px solid;
+}
+
+ 
+#filters button:hover {
+    background: rgb(47, 48, 52);
+    transition: 0.2s ease-in-out;
+}
+
+.active-filter {
+    background: rgb(47, 48, 52) !important;
+}
+
+.todo-filter-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}

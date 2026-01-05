@@ -1,5 +1,6 @@
 const input = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
+const filters = document.getElementById("filters");
 
 
 // save tasks for localStorage
@@ -159,3 +160,29 @@ span.addEventListener("click", (e) => {
 }
 
 loadTasks();
+
+//FILTER BUTTONS
+
+filters.addEventListener("click", (e) => {
+    if (e.target.tagName !== "BUTTON") return;
+
+    Array.from(filters.children).forEach(btn => btn.classList.remove("active-filter"));
+
+    e.target.classList.add("active-filter");
+
+    const filter = e.target.dataset.filter;
+
+    document.querySelectorAll ("#list-container li").forEach(li => {
+        if (filter === "all") {
+            li.style.display = "list-item";
+        }
+
+        else if (filter === "completed") {
+            li.style.display = li.classList.contains("checked") ? "list-item" : "none";
+        }
+
+        else if (filter === "uncompleted") {
+            li.style.display = !li.classList.contains("checked") ? "list-item" : "none";
+        }
+    });
+});

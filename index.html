@@ -12,8 +12,23 @@
    
 
     <div class="container">
+
+        
+
         <div class="todo-app">
-            <h2>To-do List <i class="fa-solid fa-list"></i></h2>
+
+            <div class="todo-filter-wrap">
+
+                <h2>To-do List <i class="fa-solid fa-list"></i></h2>
+
+                <div id="filters">
+                    <button data-filter="all">All</button>
+                    <button data-filter="completed">Completed</button>
+                    <button data-filter="uncompleted">uncompleted</button>
+                </div>
+
+            </div>    
+
             <div class="row">
                 <input type="text" id="input-box" placeholder="add your text">
                 <button onclick="addTask()">add</button>
