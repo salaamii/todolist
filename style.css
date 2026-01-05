@@ -151,4 +151,22 @@ ul li span {
         align-items: center;
         gap: 1.5rem;
     }
+
+    ul li {
+        font-size: 10px;
+    }
+
+    ul li span {
+        font-size: 1.2rem;
+        justify-content: flex-end;
+    }
+
+    input {
+        padding: 5px;
+    }
+
+    button {
+
+        padding: 5px 20px;
+    }
 }
